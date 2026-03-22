@@ -5,27 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TabunganKu - Aplikasi tabungan pintar dengan gamifikasi">
   <title>TabunganKu 💰</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ============ AUTH SCREEN ============ -->
 <div id="authScreen">
-  <div class="auth-bg-circle c1"></div>
-  <div class="auth-bg-circle c2"></div>
-  <div class="auth-bg-circle c3"></div>
+  <div class="auth-bg c1"></div>
+  <div class="auth-bg c2"></div>
   <div class="auth-card">
     <div class="auth-icon">💰</div>
     <div class="auth-logo">Tabungan<span>Ku</span></div>
     <div class="auth-tagline">Nabung lebih cerdas, capai impian lebih cepat.<br>Gratis & aman tersimpan di cloud.</div>
-    <div class="auth-features">
+    <div class="auth-feats">
       <span class="auth-feat">🎯 Target Tabungan</span>
-      <span class="auth-feat">📊 Statistik Lengkap</span>
+      <span class="auth-feat">📊 Statistik</span>
       <span class="auth-feat">🏆 Gamifikasi</span>
       <span class="auth-feat">☁️ Cloud Sync</span>
       <span class="auth-feat">🔔 Reminder</span>
     </div>
-    <button class="btn-google" onclick="loginGoogle()">
+    <button class="btn-google" onclick="App.loginGoogle()">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
         <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -42,130 +43,88 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-logo-icon">💰</div>
-      <div class="sidebar-logo-text">Tabungan<span>Ku</span></div>
+    <div class="sidebar-hd">
+      <div class="sidebar-logo-ico">💰</div>
+      <div class="sidebar-logo-txt">Tabungan<span>Ku</span></div>
     </div>
     <nav class="sidebar-nav">
-      <div class="nav-section-label">Menu Utama</div>
-      <div class="nav-item active" onclick="showPage('dashboard')">
-        <span class="nav-icon">🏠</span> Dashboard
-      </div>
-      <div class="nav-item" onclick="showPage('tabungan')">
-        <span class="nav-icon">🏦</span> Tabungan Saya
-      </div>
-      <div class="nav-item" onclick="showPage('history')">
-        <span class="nav-icon">📋</span> History
-      </div>
-      <div class="nav-item" onclick="showPage('statistik')">
-        <span class="nav-icon">📊</span> Statistik
-      </div>
-      <div class="nav-section-label" style="margin-top:10px">Lainnya</div>
-      <div class="nav-item" onclick="showPage('badges')">
-        <span class="nav-icon">🏆</span> Badges
-      </div>
-      <div class="nav-item" onclick="showPage('settings')">
-        <span class="nav-icon">⚙️</span> Pengaturan
-      </div>
+      <div class="nav-lbl">Menu Utama</div>
+      <div class="nav-item active" onclick="App.showPage('dashboard')"><span class="nav-ico">🏠</span>Dashboard</div>
+      <div class="nav-item" onclick="App.showPage('tabungan')"><span class="nav-ico">🏦</span>Tabungan Saya</div>
+      <div class="nav-item" onclick="App.showPage('history')"><span class="nav-ico">📋</span>History</div>
+      <div class="nav-item" onclick="App.showPage('statistik')"><span class="nav-ico">📊</span>Statistik</div>
+      <div class="nav-lbl" style="margin-top:10px">Lainnya</div>
+      <div class="nav-item" onclick="App.showPage('badges')"><span class="nav-ico">🏆</span>Badges</div>
+      <div class="nav-item" onclick="App.showPage('settings')"><span class="nav-ico">⚙️</span>Pengaturan</div>
     </nav>
     <div class="sidebar-user">
-      <div id="sidebarAvatar" class="user-avatar-placeholder">U</div>
-      <div class="user-info">
-        <div class="user-name" id="sidebarName">User</div>
-        <div class="user-level" id="sidebarLevel">🌱 Beginner</div>
+      <div id="sidebarAvatar" class="u-avatar-ph">U</div>
+      <div class="u-info">
+        <div class="u-name" id="sidebarName">User</div>
+        <div class="u-level" id="sidebarLevel">🌱 Beginner</div>
       </div>
-      <button class="btn-logout" onclick="logout()" title="Logout">🚪</button>
+      <button class="btn-logout" onclick="App.logout()" title="Logout">🚪</button>
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="main">
-    <!-- TOPBAR -->
     <div class="topbar">
-      <div class="topbar-left">
-        <button class="btn-icon" id="menuToggle" onclick="toggleSidebar()" style="display:none">☰</button>
+      <div class="topbar-l">
+        <button class="btn-ico" id="menuToggle" onclick="App.toggleSidebar()" style="display:none">☰</button>
         <div class="page-title" id="pageTitle">Dashboard</div>
       </div>
-      <div class="topbar-right">
-        <button class="btn-icon" id="themeBtn" onclick="toggleTheme()" title="Ganti tema">🌙</button>
-        <button class="btn-icon" onclick="showPage('settings')" title="Pengaturan">⚙️</button>
+      <div class="topbar-r">
+        <button class="btn-ico" id="themeBtn" onclick="App.toggleTheme()" title="Ganti tema">🌙</button>
+        <button class="btn-ico" onclick="App.showPage('settings')">⚙️</button>
       </div>
     </div>
 
-    <!-- PAGES CONTENT -->
     <div class="content">
 
-      <!-- ===== DASHBOARD ===== -->
+      <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
-
-        <!-- Level Banner -->
         <div class="level-banner">
-          <div class="level-emoji-wrap" id="levelEmoji">🌱</div>
-          <div class="level-info">
+          <div class="lv-emoji" id="levelEmoji">🌱</div>
+          <div class="lv-info">
             <h2 id="levelTitle">Beginner Saver</h2>
             <p id="levelDesc">Terus nabung buat naik level!</p>
             <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
-            <div class="xp-label" id="xpLabel">0 XP / 100 XP</div>
+            <div class="xp-lbl" id="xpLabel">0 XP / 100 XP</div>
           </div>
         </div>
-
-        <!-- Stats -->
         <div class="stats-grid">
-          <div class="stat-card blue-card">
-            <div class="stat-card-icon">💰</div>
-            <div class="stat-card-val" id="statTotal">Rp 0</div>
-            <div class="stat-card-lbl">Total Terkumpul</div>
-          </div>
-          <div class="stat-card green-card">
-            <div class="stat-card-icon">🎯</div>
-            <div class="stat-card-val" id="statTarget">0</div>
-            <div class="stat-card-lbl">Jumlah Target</div>
-          </div>
-          <div class="stat-card orange-card">
-            <div class="stat-card-icon">🔥</div>
-            <div class="stat-card-val" id="statStreak">0 hari</div>
-            <div class="stat-card-lbl">Streak Sekarang</div>
-          </div>
-          <div class="stat-card purple-card">
-            <div class="stat-card-icon">🏆</div>
-            <div class="stat-card-val" id="statBadges">0</div>
-            <div class="stat-card-lbl">Badge Didapat</div>
-          </div>
+          <div class="stat-card sc-blue"><div class="stat-ico">💰</div><div class="stat-val" id="statTotal">Rp 0</div><div class="stat-lbl">Total Terkumpul</div></div>
+          <div class="stat-card sc-green"><div class="stat-ico">🎯</div><div class="stat-val" id="statTarget">0</div><div class="stat-lbl">Jumlah Target</div></div>
+          <div class="stat-card sc-orange"><div class="stat-ico">🔥</div><div class="stat-val" id="statStreak">0 hari</div><div class="stat-lbl">Streak Sekarang</div></div>
+          <div class="stat-card sc-purple"><div class="stat-ico">🏆</div><div class="stat-val" id="statBadges">0</div><div class="stat-lbl">Badge Didapat</div></div>
         </div>
-
-        <!-- Active Savings -->
         <div class="card" style="margin-bottom:20px">
-          <div class="card-header">
+          <div class="card-hd">
             <div class="card-title">🏦 Tabungan Aktif</div>
-            <button class="btn btn-outline-blue" onclick="showPage('tabungan')" style="padding:7px 14px;font-size:0.8rem">
-              Lihat Semua →
-            </button>
+            <button class="btn btn-blue-ol" onclick="App.showPage('tabungan')" style="padding:7px 14px;font-size:.8rem">Lihat Semua →</button>
           </div>
           <div class="card-body" id="dashboardSavings">
-            <div class="loading"><div class="spinner"></div><div class="loading-text">Memuat data...</div></div>
+            <div class="loading"><div class="spinner"></div><div class="loading-txt">Memuat...</div></div>
           </div>
         </div>
-
-        <!-- Motivasi -->
         <div class="card">
-          <div class="card-header"><div class="card-title">💡 Motivasi Hari Ini</div></div>
-          <div class="card-body">
-            <div class="motivasi-card" id="motivasiText"></div>
-          </div>
+          <div class="card-hd"><div class="card-title">💡 Motivasi Hari Ini</div></div>
+          <div class="card-body"><div class="motivasi-card" id="motivasiText"></div></div>
         </div>
       </div>
 
-      <!-- ===== TABUNGAN ===== -->
+      <!-- TABUNGAN -->
       <div class="page" id="page-tabungan">
         <div id="savingsList">
-          <div class="loading"><div class="spinner"></div><div class="loading-text">Memuat tabungan...</div></div>
+          <div class="loading"><div class="spinner"></div><div class="loading-txt">Memuat tabungan...</div></div>
         </div>
       </div>
 
-      <!-- ===== HISTORY ===== -->
+      <!-- HISTORY -->
       <div class="page" id="page-history">
         <div class="card">
-          <div class="card-header"><div class="card-title">📋 Riwayat Nabung</div></div>
+          <div class="card-hd"><div class="card-title">📋 Riwayat Nabung</div></div>
           <div class="card-body">
             <div id="historyList" class="history-list">
               <div class="loading"><div class="spinner"></div></div>
@@ -174,245 +133,190 @@
         </div>
       </div>
 
-      <!-- ===== STATISTIK ===== -->
+      <!-- STATISTIK -->
       <div class="page" id="page-statistik">
         <div class="stats-row">
-          <div class="stat-mini">
-            <div class="stat-mini-val" id="statRataRata">Rp 0</div>
-            <div class="stat-mini-lbl">Rata-rata / Hari</div>
-          </div>
-          <div class="stat-mini">
-            <div class="stat-mini-val" id="statHariNabung">0</div>
-            <div class="stat-mini-lbl">Total Nabung</div>
-          </div>
-          <div class="stat-mini">
-            <div class="stat-mini-val" id="statBestStreak">0</div>
-            <div class="stat-mini-lbl">Best Streak 🔥</div>
-          </div>
+          <div class="stat-mini"><div class="stat-mini-val" id="statRataRata">Rp 0</div><div class="stat-mini-lbl">Rata-rata / Hari</div></div>
+          <div class="stat-mini"><div class="stat-mini-val" id="statHariNabung">0</div><div class="stat-mini-lbl">Total Nabung</div></div>
+          <div class="stat-mini"><div class="stat-mini-val" id="statBestStreak">0</div><div class="stat-mini-lbl">Best Streak 🔥</div></div>
         </div>
         <div class="card" style="margin-bottom:20px">
-          <div class="card-header"><div class="card-title">📈 Grafik 30 Hari Terakhir</div></div>
-          <div class="card-body">
-            <div class="chart-container"><canvas id="savingsChart"></canvas></div>
-          </div>
+          <div class="card-hd"><div class="card-title">📈 Grafik 30 Hari Terakhir</div></div>
+          <div class="card-body"><div class="chart-container"><canvas id="savingsChart"></canvas></div></div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">🎯 Progress per Target</div></div>
+          <div class="card-hd"><div class="card-title">🎯 Progress per Target</div></div>
           <div class="card-body" id="statsTargetList"></div>
         </div>
       </div>
 
-      <!-- ===== BADGES ===== -->
+      <!-- BADGES -->
       <div class="page" id="page-badges">
         <div class="badges-grid" id="badgesGrid">
           <div class="loading"><div class="spinner"></div></div>
         </div>
       </div>
 
-      <!-- ===== SETTINGS ===== -->
+      <!-- SETTINGS -->
       <div class="page" id="page-settings">
         <div class="settings-section">
-          <div class="settings-section-title">Tampilan</div>
+          <div class="settings-sec-title">Tampilan</div>
           <div class="settings-item">
-            <div class="settings-item-info">
-              <h4>Dark Mode</h4>
-              <p>Ganti ke tampilan gelap</p>
-            </div>
-            <button class="toggle" id="darkToggle" onclick="toggleTheme()"></button>
+            <div class="si-info"><h4>Dark Mode</h4><p>Ganti ke tampilan gelap</p></div>
+            <button class="toggle" id="darkToggle" onclick="App.toggleTheme()"></button>
           </div>
         </div>
-
         <div class="settings-section">
-          <div class="settings-section-title">Notifikasi</div>
+          <div class="settings-sec-title">Notifikasi</div>
           <div class="settings-item">
-            <div class="settings-item-info">
-              <h4>Reminder Harian</h4>
-              <p>Ingatkan kalau belum nabung hari ini</p>
-            </div>
-            <button class="toggle on" id="notifToggle" onclick="toggleNotif()"></button>
+            <div class="si-info"><h4>Reminder Harian</h4><p>Ingatkan kalau belum nabung hari ini</p></div>
+            <button class="toggle on" id="notifToggle" onclick="App.toggleNotif()"></button>
           </div>
         </div>
-
         <div class="settings-section">
-          <div class="settings-section-title">Akun</div>
+          <div class="settings-sec-title">Akun</div>
           <div class="settings-item">
-            <div class="settings-item-info">
-              <h4 id="settingsName">-</h4>
-              <p id="settingsEmail">-</p>
-            </div>
-            <button class="btn btn-danger-outline" onclick="logout()" style="padding:8px 14px;font-size:0.82rem">
-              🚪 Logout
-            </button>
+            <div class="si-info"><h4 id="settingsName">-</h4><p id="settingsEmail">-</p></div>
+            <button class="btn btn-danger-ol" onclick="App.logout()" style="padding:8px 14px;font-size:.82rem">🚪 Logout</button>
           </div>
         </div>
-
         <div class="settings-section">
-          <div class="settings-section-title">Data</div>
+          <div class="settings-sec-title">Data</div>
           <div class="settings-item">
-            <div class="settings-item-info">
-              <h4>Reset Semua Tabungan</h4>
-              <p>Hapus semua tabungan (tidak bisa dikembalikan)</p>
-            </div>
-            <button class="btn btn-danger-outline" onclick="confirmReset()" style="padding:8px 14px;font-size:0.82rem">
-              🗑️ Reset
-            </button>
+            <div class="si-info"><h4>Reset Semua Tabungan</h4><p>Hapus semua tabungan (tidak bisa dikembalikan)</p></div>
+            <button class="btn btn-danger-ol" onclick="App.confirmReset()" style="padding:8px 14px;font-size:.82rem">🗑️ Reset</button>
           </div>
         </div>
       </div>
 
-    </div><!-- /content -->
+    </div>
   </main>
-</div><!-- /app -->
+</div>
 
-<!-- ============ FAB ============ -->
-<button class="fab" id="fab" onclick="openAddModal()" title="Tambah tabungan baru">+</button>
+<!-- FAB -->
+<button class="fab" id="fab" onclick="App.openAddModal()" title="Tambah tabungan baru">+</button>
 
-<!-- ============ MODAL: TAMBAH TABUNGAN ============ -->
-<div class="modal-overlay" id="addModal">
+<!-- MODAL: TAMBAH TABUNGAN -->
+<div class="modal-ov" id="addModal">
   <div class="modal">
     <div class="modal-title">➕ Tambah Tabungan Baru</div>
-
-    <!-- Emoji -->
     <div class="form-group">
-      <label class="form-label">Pilih Ikon</label>
-      <div class="emoji-picker" id="emojiPicker">
-        <div class="emoji-opt selected" data-emoji="🏠" onclick="selectEmoji(this)">🏠</div>
-        <div class="emoji-opt" data-emoji="📱" onclick="selectEmoji(this)">📱</div>
-        <div class="emoji-opt" data-emoji="✈️" onclick="selectEmoji(this)">✈️</div>
-        <div class="emoji-opt" data-emoji="🎮" onclick="selectEmoji(this)">🎮</div>
-        <div class="emoji-opt" data-emoji="💻" onclick="selectEmoji(this)">💻</div>
-        <div class="emoji-opt" data-emoji="🚗" onclick="selectEmoji(this)">🚗</div>
-        <div class="emoji-opt" data-emoji="👗" onclick="selectEmoji(this)">👗</div>
-        <div class="emoji-opt" data-emoji="💍" onclick="selectEmoji(this)">💍</div>
-        <div class="emoji-opt" data-emoji="📚" onclick="selectEmoji(this)">📚</div>
-        <div class="emoji-opt" data-emoji="🎵" onclick="selectEmoji(this)">🎵</div>
-        <div class="emoji-opt" data-emoji="🏋️" onclick="selectEmoji(this)">🏋️</div>
-        <div class="emoji-opt" data-emoji="💰" onclick="selectEmoji(this)">💰</div>
+      <label class="form-lbl">Pilih Ikon</label>
+      <div class="emoji-picker">
+        <div class="emoji-opt selected" data-emoji="🏠" onclick="App.selectEmoji(this)">🏠</div>
+        <div class="emoji-opt" data-emoji="📱" onclick="App.selectEmoji(this)">📱</div>
+        <div class="emoji-opt" data-emoji="✈️" onclick="App.selectEmoji(this)">✈️</div>
+        <div class="emoji-opt" data-emoji="🎮" onclick="App.selectEmoji(this)">🎮</div>
+        <div class="emoji-opt" data-emoji="💻" onclick="App.selectEmoji(this)">💻</div>
+        <div class="emoji-opt" data-emoji="🚗" onclick="App.selectEmoji(this)">🚗</div>
+        <div class="emoji-opt" data-emoji="👗" onclick="App.selectEmoji(this)">👗</div>
+        <div class="emoji-opt" data-emoji="💍" onclick="App.selectEmoji(this)">💍</div>
+        <div class="emoji-opt" data-emoji="📚" onclick="App.selectEmoji(this)">📚</div>
+        <div class="emoji-opt" data-emoji="🎵" onclick="App.selectEmoji(this)">🎵</div>
+        <div class="emoji-opt" data-emoji="🏋️" onclick="App.selectEmoji(this)">🏋️</div>
+        <div class="emoji-opt" data-emoji="💰" onclick="App.selectEmoji(this)">💰</div>
       </div>
     </div>
-
-    <!-- Judul -->
-    <div class="form-group">
-      <label class="form-label">Judul Tabungan *</label>
-      <input type="text" class="form-input" id="inputJudul" placeholder="Contoh: HP Impian, Liburan Bali..." oninput="calcPreview()">
-    </div>
-
-    <!-- Target & Per Hari -->
+    <div class="form-group"><label class="form-lbl">Judul Tabungan *</label><input type="text" class="form-inp" id="inputJudul" placeholder="Contoh: HP Impian, Liburan Bali..." oninput="App.calcPreview()"></div>
     <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Target Uang (Rp) *</label>
-        <input type="number" class="form-input" id="inputTarget" placeholder="5000000" min="1" oninput="calcPreview()">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Nabung per Hari (Rp) *</label>
-        <input type="number" class="form-input" id="inputPerHari" placeholder="50000" min="1" oninput="calcPreview()">
-      </div>
+      <div class="form-group"><label class="form-lbl">Target (Rp) *</label><input type="number" class="form-inp" id="inputTarget" placeholder="5000000" min="1" oninput="App.calcPreview()"></div>
+      <div class="form-group"><label class="form-lbl">Per Hari (Rp) *</label><input type="number" class="form-inp" id="inputPerHari" placeholder="50000" min="1" oninput="App.calcPreview()"></div>
     </div>
-
-    <!-- Tanggal -->
     <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Tanggal Mulai</label>
-        <input type="date" class="form-input" id="inputMulai">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Deadline (opsional)</label>
-        <input type="date" class="form-input" id="inputDeadline">
-      </div>
+      <div class="form-group"><label class="form-lbl">Tanggal Mulai</label><input type="date" class="form-inp" id="inputMulai"></div>
+      <div class="form-group"><label class="form-lbl">Deadline (opsional)</label><input type="date" class="form-inp" id="inputDeadline"></div>
     </div>
-
-    <!-- Opsi -->
     <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Jadwal Nabung</label>
-        <select class="form-input form-select" id="inputHariNabung">
+      <div class="form-group"><label class="form-lbl">Jadwal Nabung</label>
+        <select class="form-inp form-sel" id="inputHariNabung">
           <option value="daily">📅 Setiap Hari</option>
-          <option value="weekday">💼 Senin – Jumat</option>
-          <option value="weekend">🌤️ Weekend Saja</option>
+          <option value="weekday">💼 Senin–Jumat</option>
+          <option value="weekend">🌤️ Weekend</option>
         </select>
       </div>
-      <div class="form-group">
-        <label class="form-label">Kenaikan / Bulan (Rp)</label>
-        <input type="number" class="form-input" id="inputKenaikan" placeholder="0 (tidak naik)" min="0" oninput="calcPreview()">
-      </div>
+      <div class="form-group"><label class="form-lbl">Kenaikan/Bulan (Rp)</label><input type="number" class="form-inp" id="inputKenaikan" placeholder="0 (tidak naik)" min="0" oninput="App.calcPreview()"></div>
     </div>
-
-    <!-- Prioritas -->
-    <div class="form-group">
-      <label class="form-label">Prioritas</label>
-      <select class="form-input form-select" id="inputPrioritas">
+    <div class="form-group"><label class="form-lbl">Prioritas</label>
+      <select class="form-inp form-sel" id="inputPrioritas">
         <option value="utama">⭐ Utama</option>
         <option value="sampingan">📌 Sampingan</option>
       </select>
     </div>
-
-    <!-- Kalkulasi Preview -->
-    <div class="calc-preview" id="calcPreview">
-      <div class="calc-preview-title">🧮 Kalkulasi Otomatis</div>
+    <div class="calc-prev" id="calcPreview">
+      <div class="calc-prev-title">🧮 Kalkulasi Otomatis</div>
       <div class="calc-row"><span>Lama menabung</span><span id="previewLama">-</span></div>
       <div class="calc-row"><span>Estimasi selesai</span><span id="previewSelesai">-</span></div>
       <div class="calc-row"><span>Total hari</span><span id="previewHari">-</span></div>
     </div>
-
     <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeModal('addModal')" style="flex:1">Batal</button>
-      <button class="btn btn-primary" onclick="saveSaving()" style="flex:2;justify-content:center">💾 Simpan Tabungan</button>
+      <button class="btn btn-secondary" onclick="App.closeModal('addModal')" style="flex:1">Batal</button>
+      <button class="btn btn-primary" onclick="App.saveSaving()" style="flex:2;justify-content:center">💾 Simpan Tabungan</button>
     </div>
   </div>
 </div>
 
-<!-- ============ MODAL: NABUNG ============ -->
-<div class="modal-overlay" id="nabungModal">
+<!-- MODAL: NABUNG -->
+<div class="modal-ov" id="nabungModal">
   <div class="modal" style="max-width:420px">
-    <div class="modal-title">💸 Tambah Saldo Nabung</div>
+    <div class="modal-title">💸 Tambah Saldo</div>
     <div class="nabung-info">
-      <div class="nabung-title" id="nabungTitle">-</div>
-      <div class="nabung-current">
-        Terkumpul: <strong id="nabungCurrent">-</strong> dari <span id="nabungTargetShow">-</span>
-      </div>
+      <div class="nabung-title-txt" id="nabungTitle">-</div>
+      <div class="nabung-cur">Terkumpul: <strong id="nabungCurrent">-</strong> dari <span id="nabungTargetShow">-</span></div>
     </div>
     <div class="form-group">
-      <label class="form-label">Jumlah Nabung (Rp)</label>
-      <input type="number" class="form-input" id="inputNabung" placeholder="50000" min="1">
-      <div class="quick-amounts">
-        <button class="quick-btn" onclick="setQuick(10000)">10K</button>
-        <button class="quick-btn" onclick="setQuick(20000)">20K</button>
-        <button class="quick-btn" onclick="setQuick(50000)">50K</button>
-        <button class="quick-btn" onclick="setQuick(100000)">100K</button>
-        <button class="quick-btn" onclick="setQuick(200000)">200K</button>
-        <button class="quick-btn" onclick="setQuick(500000)">500K</button>
+      <label class="form-lbl">Jumlah (Rp)</label>
+      <input type="number" class="form-inp" id="inputNabung" placeholder="50000" min="1">
+      <div class="quick-amts">
+        <button class="quick-btn" onclick="App.setQuick(10000)">10K</button>
+        <button class="quick-btn" onclick="App.setQuick(20000)">20K</button>
+        <button class="quick-btn" onclick="App.setQuick(50000)">50K</button>
+        <button class="quick-btn" onclick="App.setQuick(100000)">100K</button>
+        <button class="quick-btn" onclick="App.setQuick(200000)">200K</button>
+        <button class="quick-btn" onclick="App.setQuick(500000)">500K</button>
       </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Catatan (opsional)</label>
-      <input type="text" class="form-input" id="inputNabungNote" placeholder="Dari gaji, bonus, jajan hemat...">
-    </div>
+    <div class="form-group"><label class="form-lbl">Catatan (opsional)</label><input type="text" class="form-inp" id="inputNabungNote" placeholder="Dari gaji, bonus..."></div>
     <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeModal('nabungModal')" style="flex:1">Batal</button>
-      <button class="btn btn-success" onclick="doNabung()" style="flex:2;justify-content:center">💸 Nabung Sekarang!</button>
+      <button class="btn btn-secondary" onclick="App.closeModal('nabungModal')" style="flex:1">Batal</button>
+      <button class="btn btn-success" onclick="App.doNabung()" style="flex:2;justify-content:center">💸 Nabung!</button>
     </div>
   </div>
 </div>
 
-<!-- ============ MODAL: CONFIRM ============ -->
-<div class="modal-overlay" id="confirmModal">
+<!-- MODAL: CONFIRM -->
+<div class="modal-ov" id="confirmModal">
   <div class="confirm-box">
-    <div class="confirm-icon">⚠️</div>
+    <div class="confirm-ico">⚠️</div>
     <h3 id="confirmTitle">Konfirmasi</h3>
     <p id="confirmMsg">Yakin mau melanjutkan?</p>
     <div class="confirm-actions">
-      <button class="btn btn-secondary" onclick="closeModal('confirmModal')" style="flex:1">Batal</button>
-      <button class="btn" onclick="confirmOk()" style="flex:1;background:var(--red);color:#fff;justify-content:center">Ya, Lanjutkan</button>
+      <button class="btn btn-secondary" onclick="App.closeModal('confirmModal')" style="flex:1">Batal</button>
+      <button class="btn" onclick="App.confirmOk()" style="flex:1;background:var(--red);color:#fff;justify-content:center">Ya, Lanjutkan</button>
     </div>
   </div>
 </div>
 
-<!-- ============ TOAST CONTAINER ============ -->
-<div class="toast-container" id="toastContainer"></div>
+<!-- TOAST -->
+<div class="toast-cont" id="toastContainer"></div>
 
 <!-- ============ SCRIPTS ============ -->
+<!-- 1. Firebase Compat (bukan modular) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<!-- 2. Chart.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<script type="module" src="app.js"></script>
+
+<!-- 3. App files (urutan penting!) -->
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+
+<!-- 4. Init -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => App.init());
+</script>
 
 </body>
 </html>
