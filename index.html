@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PiggyMate - Aplikasi Tabungan Cerdas</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Chart.js untuk grafik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- CSS Custom -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-piggy-bank"></i> PiggyMate <span class="badge-pro">PRO+</span></h1>
+        <button class="theme-toggle" id="darkModeBtn"><i class="fas fa-moon"></i> <span id="themeText">Mode Gelap</span></button>
+    </div>
+
+    <!-- Form buat target tabungan baru -->
+    <div class="card">
+        <h3 style="margin-bottom: 16px;"><i class="fas fa-plus-circle"></i> Buat Target Baru</h3>
+        <div class="form-grid">
+            <div class="input-group">
+                <label>Judul Tabungan</label>
+                <input type="text" id="savingTitle" placeholder="Contoh: HP Impian" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>Target Uang (Rp)</label>
+                <input type="number" id="targetAmount" placeholder="5.000.000">
+            </div>
+            <div class="input-group">
+                <label>Nabung per Hari (Rp)</label>
+                <input type="number" id="dailyAmount" placeholder="50.000">
+            </div>
+            <div class="input-group">
+                <label>Tanggal Mulai</label>
+                <input type="date" id="startDate">
+            </div>
+            <div class="input-group">
+                <label>Pilihan Hari Nabung</label>
+                <select id="scheduleType">
+                    <option value="everyday">Setiap Hari</option>
+                    <option value="weekday">Senin - Jumat</option>
+                    <option value="weekend">Weekend (Sabtu-Minggu)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Kenaikan Bulanan (%)</label>
+                <input type="number" id="monthlyIncrease" placeholder="0" value="0" step="1">
+            </div>
+            <button id="createSavingBtn"><i class="fas fa-save"></i> Buat Tabungan</button>
+        </div>
+    </div>
+
+    <!-- Statistik & Grafik -->
+    <div class="card">
+        <h3><i class="fas fa-chart-line"></i> Statistik & Motivasi</h3>
+        <div class="stats-panel">
+            <div class="chart-box">
+                <canvas id="progressChart" width="400" height="200" style="max-height: 220px; width: 100%;"></canvas>
+            </div>
+            <div class="streak-box" id="streakInfo">
+                <div><i class="fas fa-fire"></i> <strong>Streak Terpanjang</strong> <span id="maxStreak">0</span> hari</div>
+                <div><i class="fas fa-calendar-check"></i> Total Nabung: <span id="totalTransactions">0</span> kali</div>
+                <div><i class="fas fa-trophy"></i> Level: <span id="userLevel">Pemula</span></div>
+                <div><i class="fas fa-star"></i> XP: <span id="userXP">0</span> XP</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daftar Semua Tabungan -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3><i class="fas fa-list-ul"></i> Daftar Tabunganku</h3>
+            <button id="resetDemoBtn" class="btn-outline" style="background:transparent"><i class="fas fa-trash-alt"></i> Reset Demo</button>
+        </div>
+        <div id="savingsListContainer" class="savings-grid">
+            <!-- dynamic content -->
+        </div>
+    </div>
+
+    <footer>
+        <i class="fas fa-database"></i> Data tersimpan di LocalStorage | Rencana: Firebase + Login Google
+    </footer>
+</div>
+
+<!-- JavaScript -->
+<script src="app.js"></script>
+</body>
+</html>
