@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f3f6fc;
+    color: #1e2a3e;
+    padding: 24px 16px 40px;
+    transition: background 0.3s, color 0.2s;
+}
+
+body.dark-mode {
+    background: #121826;
+    color: #e2e8f0;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2b6e4f, #1e4a6e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge-pro {
+    background: #f5b042;
+    color: #2d2b1f;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.theme-toggle {
+    background: white;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 60px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+body.dark-mode .theme-toggle {
+    background: #2d3748;
+    color: #f0f0f0;
+}
+
+/* card layout */
+.card {
+    background: white;
+    border-radius: 28px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    border: 1px solid #eef2f5;
+}
+
+body.dark-mode .card {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* form */
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.input-group {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #5b6e8c;
+}
+
+body.dark-mode .input-group label {
+    color: #9ca3af;
+}
+
+input, select {
+    padding: 12px 12px;
+    border-radius: 18px;
+    border: 1px solid #cfdfed;
+    background: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+    background: #0f172a;
+    border-color: #334155;
+    color: #f1f5f9;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #2b6e4f;
+    box-shadow: 0 0 0 2px rgba(43,110,79,0.2);
+}
+
+button {
+    background: #2b6e4f;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    font-size: 0.85rem;
+}
+
+button:hover {
+    background: #1f5a40;
+    transform: scale(0.97);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #2b6e4f;
+    color: #2b6e4f;
+}
+
+.btn-outline:hover {
+    background: #e9f3ef;
+}
+
+.btn-danger {
+    background: #b91c1c;
+}
+
+.btn-danger:hover {
+    background: #991b1b;
+}
+
+/* daftar tabungan */
+.savings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 12px;
+}
+
+.saving-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 20px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+    border-left: 6px solid #2b6e4f;
+}
+
+body.dark-mode .saving-card {
+    background: #0f172a;
+    border-left-color: #3b9e6f;
+}
+
+.saving-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar {
+    background: #e2e8f0;
+    border-radius: 30px;
+    height: 12px;
+    margin: 16px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: #2b6e4f;
+    width: 0%;
+    height: 100%;
+    border-radius: 30px;
+    transition: width 0.3s;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 0.85rem;
+}
+
+.tag {
+    background: #eef2ff;
+    padding: 4px 10px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    display: inline-block;
+}
+
+body.dark-mode .tag {
+    background: #2d3748;
+    color: #cbd5e1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6c86a3;
+}
+
+/* statistik */
+.stats-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.chart-box {
+    flex: 2;
+    min-width: 220px;
+}
+
+.streak-box {
+    flex: 1;
+    background: #fef9e6;
+    border-radius: 24px;
+    padding: 16px;
+}
+
+body.dark-mode .streak-box {
+    background: #2d2a1f;
+    color: #fdebb3;
+}
+
+.streak-box div {
+    margin: 12px 0;
+}
+
+footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.75rem;
+    color: #6b7b8f;
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        flex-direction: column;
+    }
+
+    .action-buttons button {
+        flex: 1;
+    }
+
+    .savings-grid {
+        grid-template-columns: 1fr;
+    }
+  }
